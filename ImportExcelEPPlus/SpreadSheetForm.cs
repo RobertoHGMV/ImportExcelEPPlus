@@ -91,6 +91,9 @@ namespace ImportExcelEPPlus
 
                     for (var column = workSheet.Dimension.Start.Column; column <= workSheet.Dimension.End.Column; column++)
                     {
+                        if (workSheet.Cells[1, column].Value is null)
+                            throw new Exception($"Não foi possível acessar o valor da coluna nº {column}.");
+
                         var columnName = workSheet.Cells[1, column].Value.ToString();
                         var value = workSheet.Cells[row, column].Value;
 
